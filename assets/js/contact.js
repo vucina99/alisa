@@ -27,8 +27,24 @@ $("#contact").ready(function (){
             $(".alertSuccess").hide()
             // $("alert-dange").removeClass('d-none');
         }else{
-            $(".alertDanger").hide()
-            $(".alertSuccess").show()
+            $.ajax({
+                "method" : "POST",
+                "url" : "contact.php",
+                "dataType" : "json",
+                "data" : {fullName, email, subject , message},
+                "success" : function(data){
+
+                        $(".alertDanger").hide() 
+                      $(".alertSuccess").show()
+                } , 
+                "error" : function(error) {
+                     html += `<li> Došlo je do greške </li>`
+                     document.getElementById("errorMessage").innerHTML = html;
+                      $(".alertDanger").show()
+                      $(".alertSuccess").hide()
+                }
+            })
+           
         }
     })
 });
