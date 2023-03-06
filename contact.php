@@ -21,39 +21,39 @@ $message = $_POST['message'];
 $error = false;
 // Provjera punog imena
 if (!preg_match($fullNameRegex, $fullName)) {
-  $error = true;
+    $error = true;
 
 }
 
 // Provjera e-pošte
 if (!preg_match($emailRegex, $email)) {
-  $error = true;
+    $error = true;
 }
 
 // Provjera predmeta poruke
 if (!preg_match($subjectRegex, $subject)) {
- $error = true;
+    $error = true;
 }
 
 // Provjera poruke
 if (!preg_match($messageRegex, $message)) {
-  $error = true;
+    $error = true;
 }
 
-if(!$error){
+if (!$error) {
 // Slanje e-pošte
-$to = 'vukzdravkovic69@gmail.com';
-$subject = $subject;
-$message = $message;
-$headers = 'From: ' . $email. "\r\n" .
-           'Reply-To: ' . $email . "\r\n" .
-           'X-Mailer: PHP/' . phpversion();
+    $to = 'vukzdravkovic69@gmail.com';
+    $subject = $subject;
+    $message = $message;
+    $headers = 'From: ' . $email . "\r\n" .
+        'Reply-To: ' . $email . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
 
 //mail($to, $subject, $message, $headers);
-header("Content-Type: Application/json");
-echo json_encode(['data' => ' Uspešno poslata poruka ']);
+    header("Content-Type: Application/json");
+    echo json_encode(['data' => ' Uspešno poslata poruka ']);
 
 
-}else{
-	http_response_code(500);
+} else {
+    http_response_code(500);
 }

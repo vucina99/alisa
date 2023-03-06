@@ -1,7 +1,7 @@
-$("#contact").ready(function (){
+$("#contact").ready(function () {
     $(".alertDanger").hide()
     $(".alertSuccess").hide()
-    $("#sendMessage").on("click" , function (e){
+    $("#sendMessage").on("click", function (e) {
         e.preventDefault()
         const fullName = $('#name').val();
         const email = $('#email').val();
@@ -21,30 +21,30 @@ $("#contact").ready(function (){
         if (!validateMessage(message)) {
             html += `<li> Unesite ispravan naslov poruke </li>`
         }
-        if(html !== ''){
-           document.getElementById("errorMessage").innerHTML = html;
+        if (html !== '') {
+            document.getElementById("errorMessage").innerHTML = html;
             $(".alertDanger").show()
             $(".alertSuccess").hide()
             // $("alert-dange").removeClass('d-none');
-        }else{
+        } else {
             $.ajax({
-                "method" : "POST",
-                "url" : "contact.php",
-                "dataType" : "json",
-                "data" : {fullName, email, subject , message},
-                "success" : function(data){
+                "method": "POST",
+                "url": "contact.php",
+                "dataType": "json",
+                "data": {fullName, email, subject, message},
+                "success": function (data) {
 
-                        $(".alertDanger").hide() 
-                      $(".alertSuccess").show()
-                } , 
-                "error" : function(error) {
-                     html += `<li> Došlo je do greške </li>`
-                     document.getElementById("errorMessage").innerHTML = html;
-                      $(".alertDanger").show()
-                      $(".alertSuccess").hide()
+                    $(".alertDanger").hide()
+                    $(".alertSuccess").show()
+                },
+                "error": function (error) {
+                    html += `<li> Došlo je do greške </li>`
+                    document.getElementById("errorMessage").innerHTML = html;
+                    $(".alertDanger").show()
+                    $(".alertSuccess").hide()
                 }
             })
-           
+
         }
     })
 });
