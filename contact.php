@@ -49,7 +49,7 @@ if (!$error) {
         'Reply-To: ' . $email . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
-//mail($to, $subject, $message, $headers);
+mail($to, $subject, $message, $headers);
     header("Content-Type: Application/json");
     echo json_encode(['data' => ' Uspešno poslata poruka ']);
 
